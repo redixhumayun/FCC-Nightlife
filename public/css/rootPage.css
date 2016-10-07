@@ -1,0 +1,55 @@
+body{
+    background-color:#1992BE;
+}
+.facebook-login-wrapper{
+    margin-top:10px;
+}
+.main-container{
+    margin-top:50px;
+}
+.drink{
+    width:150px;
+    height:150px;
+    margin-left:40px;
+}
+.dance{
+    width:150px;
+    height:150px;
+}
+.club{
+    height:150px;
+    width:150px;
+}
+.images-container{
+    max-width:500px;
+    width:auto;
+    margin:0px auto;
+}
+.glyphicon-search{
+    font-size:2em;
+    margin:0px auto 0px auto;
+    cursor:pointer;
+    z-index:5;
+    display:inline;
+}
+.glyphicon-remove{
+    font-size:2em;
+    cursor:pointer;
+    position: absolute;
+    margin-left:180px;
+    display:inline;
+}
+.glyphicon-search:hover{
+    color:#BE5D19;
+}
+.glyphicon-remove:hover{
+    color:#BE5D19;
+}
+.form-control{
+    border-radius:10px;
+    background-color:rgb(25, 146, 190);
+    border-color:black;
+    width:400px !important;
+    position:absolute;
+    margin:-40px auto 0px 465px;
+}
