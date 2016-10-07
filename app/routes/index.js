@@ -21,9 +21,10 @@ module.exports = function (app, passport) {
 		})
 		
 		.post(function(req, res){
-			console.log(req.body);
 			clickHandler.yelpRequest(req, res, function(data){
 				console.log("in the post route");
+				console.log(data.businesses);
+				res.json(data.businesses);
 			});
 		});
 

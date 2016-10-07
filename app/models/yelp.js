@@ -2,10 +2,7 @@ var Yelp = require('yelp');
 
 
 var yelp = new Yelp({
-        consumer_key: 'xxxxx', 
-        consumer_secret:'xxxxxxxxxxxxxx',
-        token:'xxxxxxxxxxxxxx',
-        token_secret:'xxxxxxxxxxxxxx'
+        
 });
 
 exports.search = function(location, callback){

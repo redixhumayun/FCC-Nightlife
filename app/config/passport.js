@@ -15,7 +15,6 @@ module.exports = function (passport) {
 			done(err, user);
 		});
 	});
-	console.log(configAuth);
 	//using the facebook strategy to login the user and serialize their session
 	passport.use(new FacebookStrategy({
 		clientID: configAuth.facebookAuth.clientID,

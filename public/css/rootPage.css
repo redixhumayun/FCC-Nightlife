@@ -53,3 +53,31 @@ body{
     position:absolute;
     margin:-40px auto 0px 465px;
 }
+.results-container{
+    margin-top: 50px;
+    background-color: #1992BE;
+    border-color:white;
+}
+.search-list{
+    margin-left:-40px;
+}
+.list_item{
+    list-style-type:none;
+    min-height:150px;
+    padding:10px;
+    margin:0px auto 20px auto;
+    border-radius:10px;
+    background-color: #19BEB3;
+}
+.list_item img{
+    float:left;
+}
+.list_item div{
+    display:inline-block;
+    margin-left: 20px;
+}
+.bar-title{
+    font-size:2em;
+    font-family:Verdana;
+}
+

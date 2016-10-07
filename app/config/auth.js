@@ -1,5 +1,4 @@
 'use strict';
-console.log(process.env.FACEBOOK_KEY);
 module.exports = {
 	'facebookAuth': {
 		'clientID': process.env.FACEBOOK_KEY,

@@ -24,12 +24,35 @@
         
     });
 })();
-
+//image sizes of the yelp images are 100x100px
 function makeHTTPRequest(value){
     var objectToPass = {};
     objectToPass.text = value;
     objectToPass = JSON.stringify(objectToPass);
-    ajaxFunctions.ready(ajaxFunctions.ajaxRequest('POST', '/', objectToPass ,function(data){
+    ajaxFunctions.ready(ajaxFunctions.ajaxRequest('POST', '/', objectToPass, function(data){
+        data = JSON.parse(data);
+        console.log(typeof data);
         console.log(data);
+        populateList(data);
     }));
+}
+
+function populateList(data){
+    for(var i = 0; i < data.length; i++){
+        var html = '<li class="list_item"><a href="'+data[i].url+'"class="image"><img src="'+data[i].image_url+'"/></a>';
+        html += '<div class="content-container"><p class="bar-title">'+data[i].name+'</p>';
+        checkLengthOfSnippet(data[i].snippet_text, function(response){
+            html += '<p>'+response+'</p>';
+            html += '<img src="'+data[i].rating_img_url+'"/></div></li>'
+            $('.search-list').append(html);
+        });
+        
+    }
+}
+
+function checkLengthOfSnippet(text, callback){
+    if(text.length > 150){
+        text = text.substring(0,120)+'...';
+        callback(text);
+    }
 }
