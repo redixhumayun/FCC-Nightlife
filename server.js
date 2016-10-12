@@ -5,6 +5,7 @@ var routes = require('./app/routes/index.js');
 var passport = require('passport');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+var MongoStore = require('connect-mongo')(session);
 var db = require('./app/models/model.js');
 
 var app = express();
@@ -33,7 +34,8 @@ app.use('/models', express.static(process.cwd()+ '/app/models'));
 app.use(session({
 	secret: 'fccnightlife',
 	resave: false,
-	saveUninitialized: true
+	saveUninitialized: true,
+	store: new MongoStore({url: process.env.MONGO_URI})
 }));
 
 app.set('view engine', 'jade');

@@ -7,11 +7,14 @@ var UserFunctions = {
     //this function findById is specifically for passport.deserializeUser
     findById: function(id, callback){
         db.get().collection('users').find({
-            _id: id
+            facebookID: id
         }).toArray(function(err, doc){
            if(err){
                throw err;
            } if(doc){
+               console.log('Found the doc');
+               console.log(doc);
+               console.log('---------------------');
                callback(err, doc);
            }
         });
@@ -26,7 +29,10 @@ var UserFunctions = {
                 throw err;
             }
             if(doc.length > 0){
-                return callback(null, doc);
+                console.log('This document already exists for this user');
+                console.log(doc);
+                console.log('---------------------');
+                return callback(null, doc[0]);
             }else{
                 db.get().collection('users').insert({
                     facebookID: profile.id, 
@@ -37,7 +43,11 @@ var UserFunctions = {
                     if(err){
                         throw err;
                     }if(doc){
-                        callback(null, doc);
+                        console.log('Had to insert a new doc for this user');
+                        console.log('---------------------');
+                        console.log(doc);
+                        console.log('----------------------');
+                        callback(null, doc.ops[0]);
                     }
                 });
             }

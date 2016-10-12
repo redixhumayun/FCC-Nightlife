@@ -80,4 +80,14 @@ body{
     font-size:2em;
     font-family:Verdana;
 }
-
+.btn-group{
+    display:block;
+    clear:both;
+    color:red;
+}
+.btn-going{
+    background-color:#BE8119;
+}
+.btn-going:hover{
+    background-color:#BE8119;
+}

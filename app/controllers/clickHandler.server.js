@@ -1,6 +1,7 @@
 'use strict';
 
 var yelp = require('../models/yelp.js');
+var bars = require('../models/users.js');
 
 function ClickHandler () {
 
@@ -10,6 +11,10 @@ function ClickHandler () {
 		yelp.search(req.body.text, function(data){
 			callback(data);
 		});
+	}, 
+	
+	this.addGoingToBar = function(req, callback){
+		
 	};
 
 	// this.getClicks = function (req, res) {

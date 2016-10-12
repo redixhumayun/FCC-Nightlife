@@ -2,7 +2,7 @@ var Yelp = require('yelp');
 
 
 var yelp = new Yelp({
-        
+
 });
 
 exports.search = function(location, callback){

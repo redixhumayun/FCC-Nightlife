@@ -5,16 +5,24 @@ var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
 
 module.exports = function (app, passport) {
 
+	//this function checks to see whether the user has been logged in and authenticated
 	function isLoggedIn (req, res, next) {
+		//console.log('Inside isLoggedIn');
+		//console.log(req.user);
+		//console.log(req.session.passport);
 		if (req.isAuthenticated()) {
+			console.log('User is authenticated');
 			return next();
 		} else {
-			res.redirect('/login');
+			console.log('User is not authenticated and this is from the isLoggedIn function');
+			console.log('---------------------');
+			res.send('User is not authenticated'); //might need to change this to res.redirect('/login')
 		}
 	}
 
 	var clickHandler = new ClickHandler();
 	
+	//this route is for the root page 
 	app.route('/')
 		.get(function(req, res){
 			res.render(path+'/public/rootPage.jade');
@@ -22,21 +30,31 @@ module.exports = function (app, passport) {
 		
 		.post(function(req, res){
 			clickHandler.yelpRequest(req, res, function(data){
-				console.log("in the post route");
-				console.log(data.businesses);
+				console.log("in the post route of the root page");
 				res.json(data.businesses);
 			});
 		});
+	
+	//this route is for when the user clicks one of the buttons to signify that they are going to a specific bar
+	app.route('/going-to')
+		.get(isLoggedIn ,function(req, res){
+			
+			clickHandler.addGoingToBar(req, function(data){
+				
+			});
+			//res.render(path+'/public/rootPage.jade');
+		});
+	
+	//the post route for the same	
+	app.route('/going-to')
+		.post(isLoggedIn ,function(req, res){
+			
+		});
 
-	// app.route('/')
-	// 	.get(isLoggedIn, function (req, res) {
-	// 		res.sendFile(path + '/public/index.html');
-	// 	});
-
-	// app.route('/login')
-	// 	.get(function (req, res) {
-	// 		res.sendFile(path + '/public/login.html');
-	// 	});
+	app.route('/login')
+		.get(function (req, res) {
+			res.render(path+'/public/login.jade');
+		});
 
 	// app.route('/logout')
 	// 	.get(function (req, res) {

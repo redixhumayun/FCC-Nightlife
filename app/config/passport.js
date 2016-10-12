@@ -2,12 +2,11 @@
 
 var FacebookStrategy = require('passport-facebook').Strategy;
 var user = require('../models/users.js');
-var bars = require('../models/bars.js');
 var configAuth = require('./auth');
 
 module.exports = function (passport) {
 	passport.serializeUser(function (user, done) {
-		done(null, user[0].facebookID);
+		done(null, user.facebookID);
 	});
 
 	passport.deserializeUser(function (id, done) {
@@ -15,6 +14,7 @@ module.exports = function (passport) {
 			done(err, user);
 		});
 	});
+	
 	//using the facebook strategy to login the user and serialize their session
 	passport.use(new FacebookStrategy({
 		clientID: configAuth.facebookAuth.clientID,
@@ -23,7 +23,8 @@ module.exports = function (passport) {
 		profileFields: ['first_name', 'last_name', 'email', 'gender']
 	},
 	function (token, refreshToken, profile, done) {
-		console.log(profile);
+		console.log('Inside the callback for FacebookStrategy');
+		console.log('---------------------');
 		process.nextTick(function () {
 			//calling the user database from here. User database stored is users.js
 			user.findOne(token, refreshToken, profile, function(err, user){
