@@ -7,9 +7,9 @@ module.exports = function (app, passport) {
 
 	//this function checks to see whether the user has been logged in and authenticated
 	function isLoggedIn (req, res, next) {
-		//console.log('Inside isLoggedIn');
-		//console.log(req.user);
-		//console.log(req.session.passport);
+		console.log('Inside the isLoggedIn function');
+		console.log(req.user);
+		console.log('------------------------------------');
 		if (req.isAuthenticated()) {
 			console.log('User is authenticated');
 			return next();
@@ -31,7 +31,9 @@ module.exports = function (app, passport) {
 		.post(function(req, res){
 			clickHandler.yelpRequest(req, res, function(data){
 				console.log("in the post route of the root page");
-				res.json(data.businesses);
+				var dataReturn = {};
+				dataReturn.businesses = data.businesses;
+				res.json(dataReturn); //returns to the makeHTTPRequest function in rootPage.js
 			});
 		});
 	
@@ -39,16 +41,17 @@ module.exports = function (app, passport) {
 	app.route('/going-to')
 		.get(isLoggedIn ,function(req, res){
 			
-			clickHandler.addGoingToBar(req, function(data){
-				
-			});
-			//res.render(path+'/public/rootPage.jade');
 		});
 	
 	//the post route for the same	
 	app.route('/going-to')
 		.post(isLoggedIn ,function(req, res){
-			
+			req.body.profileUser = req.user;
+			console.log('This is from the /going-to route POST');
+			console.log(req.body);
+			clickHandler.addGoingToBar(req, function(data){
+				
+			});
 		});
 
 	app.route('/login')

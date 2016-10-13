@@ -12,9 +12,6 @@ var UserFunctions = {
            if(err){
                throw err;
            } if(doc){
-               console.log('Found the doc');
-               console.log(doc);
-               console.log('---------------------');
                callback(err, doc);
            }
         });
@@ -29,9 +26,9 @@ var UserFunctions = {
                 throw err;
             }
             if(doc.length > 0){
-                console.log('This document already exists for this user');
+                console.log('This user already exists and we found him!');
                 console.log(doc);
-                console.log('---------------------');
+                console.log('------------------------------------------');
                 return callback(null, doc[0]);
             }else{
                 db.get().collection('users').insert({
@@ -43,10 +40,9 @@ var UserFunctions = {
                     if(err){
                         throw err;
                     }if(doc){
-                        console.log('Had to insert a new doc for this user');
-                        console.log('---------------------');
+                        console.log('This user did not exist and we created him');
                         console.log(doc);
-                        console.log('----------------------');
+                        console.log('------------------------------------------');
                         callback(null, doc.ops[0]);
                     }
                 });

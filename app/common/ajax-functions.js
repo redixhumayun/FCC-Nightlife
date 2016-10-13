@@ -21,7 +21,6 @@ var ajaxFunctions = {
          }
       };
 
-      console.log(data);
       xmlhttp.open(method, url, true);
       xmlhttp.setRequestHeader('Content-type', 'application/json');
       xmlhttp.send(data);

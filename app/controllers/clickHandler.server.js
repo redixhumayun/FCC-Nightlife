@@ -1,7 +1,7 @@
 'use strict';
 
 var yelp = require('../models/yelp.js');
-var bars = require('../models/users.js');
+var bars = require('../models/bars.js');
 
 function ClickHandler () {
 
@@ -14,41 +14,15 @@ function ClickHandler () {
 	}, 
 	
 	this.addGoingToBar = function(req, callback){
-		
+		bars.insertUserGoingToBar(req, function(err, data){
+			console.log('Inside the clickHandler function');
+			if(err){
+				throw err;
+			}
+			console.log(data);
+			callback(null, data)
+		});
 	};
-
-	// this.getClicks = function (req, res) {
-	// 	Users
-	// 		.findOne({ 'github.id': req.user.github.id }, { '_id': false })
-	// 		.exec(function (err, result) {
-	// 			if (err) { throw err; }
-
-	// 			res.json(result.nbrClicks);
-	// 		});
-	// };
-
-	// this.addClick = function (req, res) {
-	// 	Users
-	// 		.findOneAndUpdate({ 'github.id': req.user.github.id }, { $inc: { 'nbrClicks.clicks': 1 } })
-	// 		.exec(function (err, result) {
-	// 				if (err) { throw err; }
-
-	// 				res.json(result.nbrClicks);
-	// 			}
-	// 		);
-	// };
-
-	// this.resetClicks = function (req, res) {
-	// 	Users
-	// 		.findOneAndUpdate({ 'github.id': req.user.github.id }, { 'nbrClicks.clicks': 0 })
-	// 		.exec(function (err, result) {
-	// 				if (err) { throw err; }
-
-	// 				res.json(result.nbrClicks);
-	// 			}
-	// 		);
-	// };
-
 }
 
 module.exports = ClickHandler;
