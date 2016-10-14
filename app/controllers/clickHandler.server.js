@@ -15,12 +15,13 @@ function ClickHandler () {
 	
 	this.addGoingToBar = function(req, callback){
 		bars.insertUserGoingToBar(req, function(err, data){
-			console.log('Inside the clickHandler function');
+			console.log('Inside the clickHandler callback');
 			if(err){
 				throw err;
 			}
-			console.log(data);
-			callback(null, data)
+			if(data){
+				callback(data);
+			}
 		});
 	};
 }

@@ -48,9 +48,10 @@ module.exports = function (app, passport) {
 		.post(isLoggedIn ,function(req, res){
 			req.body.profileUser = req.user;
 			console.log('This is from the /going-to route POST');
-			console.log(req.body);
+			//console.log(req.body);
 			clickHandler.addGoingToBar(req, function(data){
-				
+				console.log('This has returned to the /going-to POST route');
+				console.log(data.value);
 			});
 		});
 
