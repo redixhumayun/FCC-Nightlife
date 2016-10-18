@@ -6,15 +6,15 @@ var configAuth = require('./auth');
 
 module.exports = function (passport) {
 	passport.serializeUser(function (user, done) {
-		console.log('inside passport serializeUser');
-		console.log('------------------------------------------');
+		// console.log('inside passport serializeUser');
+		// console.log('------------------------------------------');
 		done(null, user.facebookID);
 	});
 
 	passport.deserializeUser(function (id, done) {
 		user.findById(id, function (err, user) {
-			console.log('inside passport deserializeUser');
-			console.log('------------------------------------------');
+			// console.log('inside passport deserializeUser');
+			// console.log('------------------------------------------');
 			done(err, user);
 		});
 	});

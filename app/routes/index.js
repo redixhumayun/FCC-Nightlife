@@ -48,10 +48,19 @@ module.exports = function (app, passport) {
 		.post(isLoggedIn ,function(req, res){
 			req.body.profileUser = req.user;
 			console.log('This is from the /going-to route POST');
-			//console.log(req.body);
+
 			clickHandler.addGoingToBar(req, function(data){
 				console.log('This has returned to the /going-to POST route');
 				console.log(data.value);
+				res.json(data.value);
+			});
+		});
+		
+	app.route('/update-buttons')
+		.post(function(req,res){
+			console.log(req.body);
+			clickHandler.findAllInsertedBars(req, function(data){
+				res.json(data);	
 			});
 		});
 
@@ -59,22 +68,6 @@ module.exports = function (app, passport) {
 		.get(function (req, res) {
 			res.render(path+'/public/login.jade');
 		});
-
-	// app.route('/logout')
-	// 	.get(function (req, res) {
-	// 		req.logout();
-	// 		res.redirect('/login');
-	// 	});
-
-	// app.route('/profile')
-	// 	.get(isLoggedIn, function (req, res) {
-	// 		res.sendFile(path + '/public/profile.html');
-	// 	});
-
-	// app.route('/api/:id')
-	// 	.get(isLoggedIn, function (req, res) {
-	// 		res.json(req.user.github);
-	// 	});
 
 	app.route('/auth/facebook')
 		.get(passport.authenticate('facebook', {scope: 'email'}));
@@ -85,8 +78,4 @@ module.exports = function (app, passport) {
 			failureRedirect: '/login'
 		}));
 
-	// app.route('/api/:id/clicks')
-	// 	.get(isLoggedIn, clickHandler.getClicks)
-	// 	.post(isLoggedIn, clickHandler.addClick)
-	// 	.delete(isLoggedIn, clickHandler.resetClicks);
 };

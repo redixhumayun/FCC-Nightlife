@@ -25,33 +25,23 @@ body{
     width:auto;
     margin:0px auto;
 }
-.glyphicon-search{
-    font-size:2em;
-    margin:0px auto 0px auto;
-    cursor:pointer;
-    z-index:5;
+.input-group{
     display:inline;
 }
-.glyphicon-remove{
+.glyphicon-search{
     font-size:2em;
+    margin-left: 10px;
     cursor:pointer;
-    position: absolute;
-    margin-left:180px;
-    display:inline;
+    z-index:5;
 }
 .glyphicon-search:hover{
     color:#BE5D19;
 }
-.glyphicon-remove:hover{
-    color:#BE5D19;
-}
 .form-control{
-    border-radius:10px;
+    margin-left:10px;
     background-color:rgb(25, 146, 190);
     border-color:black;
     width:400px !important;
-    position:absolute;
-    margin:-40px auto 0px 465px;
 }
 .results-container{
     margin-top: 50px;

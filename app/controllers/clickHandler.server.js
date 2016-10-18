@@ -17,9 +17,19 @@ function ClickHandler () {
 		bars.insertUserGoingToBar(req, function(err, data){
 			console.log('Inside the clickHandler callback');
 			if(err){
+				console.log('Finding an error here');
 				throw err;
 			}
 			if(data){
+				callback(data);
+			}
+		});
+	},
+	this.findAllInsertedBars = function(req, callback){
+		bars.findAllInsertedBars(req, function(err, data){
+			if(err){
+				throw err;
+			}if(data){
 				callback(data);
 			}
 		});
